@@ -28,7 +28,7 @@ public class ProductController {
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/api/product/add", method = RequestMethod.POST)
-	public ResponseEntity<ResponseAPI> add(@RequestBody ProductRequest productRequest) { // verificar os saves
+	public ResponseEntity<ResponseAPI> add(@RequestBody ProductRequest productRequest) { // verificar os saves e nomes dos metodos
 		ResponseAPI responseAPI = new ResponseAPI();
 		try {
 			if (!productService.isExists(productRequest.getCode())) {

@@ -15,7 +15,7 @@ public class ProductConverter {
 	public Product productSave(ProductRequest productRequest) {
 		try {
 			Product product = new Product();
-			product.setCode(UUID.randomUUID().toString());
+			product.setGuid(UUID.randomUUID().toString());
 			product.setCode(productRequest.getCode());
 			product.setName(productRequest.getName());
 			product.setDescription(productRequest.getDescription());
