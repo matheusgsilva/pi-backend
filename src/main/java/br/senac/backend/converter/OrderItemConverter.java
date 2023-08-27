@@ -28,7 +28,7 @@ public class OrderItemConverter {
             orderItem.setOrder(orderService.detail(orderItemRequest.getOrderGuid()));
             orderItem.setProduct(productService.detail(orderItemRequest.getProductGuid()));
             orderItem.setQuantity(orderItemRequest.getQuantity());
-            orderItem.setPrice(orderItemRequest.getPrice());
+            orderItem.setWeight(orderItemRequest.getWeight());
             return orderItem;
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,7 +39,7 @@ public class OrderItemConverter {
     public OrderItem orderItemSave(OrderItemRequest orderItemRequest, OrderItem orderItem) {
         try {
             orderItem.setQuantity(orderItemRequest.getQuantity());
-            orderItem.setPrice(orderItemRequest.getPrice());
+            orderItem.setWeight(orderItemRequest.getWeight());
             return orderItem;
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,12 +50,14 @@ public class OrderItemConverter {
     public OrderItemResponse orderItemToResponse(OrderItem orderItem) {
         try {
             OrderItemResponse orderItemResponse = new OrderItemResponse();
+            orderItemResponse.setGuid(orderItem.getGuid());
             orderItemResponse.setOrderGuid(orderItem.getOrder().getGuid());
             orderItemResponse.setProductGuid(orderItem.getProduct().getGuid());
             orderItemResponse.setProductName(orderItem.getProduct().getName());
             orderItemResponse.setProductCode(orderItem.getProduct().getCode());
+            orderItemResponse.setProductType(orderItem.getProduct().getType());
             orderItemResponse.setQuantity(orderItem.getQuantity());
-            orderItemResponse.setPrice(orderItem.getPrice());
+            orderItemResponse.setWeight(orderItem.getWeight());
             return orderItemResponse;
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,12 +70,14 @@ public class OrderItemConverter {
             List<OrderItemResponse> list = new ArrayList<OrderItemResponse>();
             for (OrderItem orderItem : orderItems) {
                 OrderItemResponse orderItemResponse = new OrderItemResponse();
+                orderItemResponse.setGuid(orderItem.getGuid());
                 orderItemResponse.setOrderGuid(orderItem.getOrder().getGuid());
                 orderItemResponse.setProductGuid(orderItem.getProduct().getGuid());
                 orderItemResponse.setProductName(orderItem.getProduct().getName());
                 orderItemResponse.setProductCode(orderItem.getProduct().getCode());
+                orderItemResponse.setProductType(orderItem.getProduct().getType());
                 orderItemResponse.setQuantity(orderItem.getQuantity());
-                orderItemResponse.setPrice(orderItem.getPrice());
+                orderItemResponse.setWeight(orderItem.getWeight());
                 list.add(orderItemResponse);
             }
             return list;

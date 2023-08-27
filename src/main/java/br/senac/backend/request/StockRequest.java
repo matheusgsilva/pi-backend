@@ -2,18 +2,9 @@ package br.senac.backend.request;
 
 public class StockRequest {
 
-	private String guid;
 	private String productGuid;
 	private Integer quantityAvailable;
 	private Double weightAvailable;
-
-	public String getGuid() {
-		return guid;
-	}
-
-	public void setGuid(String guid) {
-		this.guid = guid;
-	}
 
 	public String getProductGuid() {
 		return productGuid;

@@ -1,6 +1,9 @@
 package br.senac.backend.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import br.senac.backend.util.ETYPE_ORDER;
+
 import java.util.Date;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -11,7 +14,7 @@ public class OrderResponse {
 	private String userName;
 	private Date orderDate;
 	private String number;
-	private String status;
+	private ETYPE_ORDER status;
 
 	public String getGuid() {
 		return guid;
@@ -45,11 +48,11 @@ public class OrderResponse {
 		this.number = number;
 	}
 
-	public String getStatus() {
+	public ETYPE_ORDER getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(ETYPE_ORDER status) {
 		this.status = status;
 	}
 

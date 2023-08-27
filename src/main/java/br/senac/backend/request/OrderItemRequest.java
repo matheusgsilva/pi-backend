@@ -6,7 +6,7 @@ public class OrderItemRequest {
 	private String orderGuid;
 	private String productGuid;
 	private Integer quantity;
-	private Double price;
+	private Double weight;
 
 	public String getGuid() {
 		return guid;
@@ -40,12 +40,12 @@ public class OrderItemRequest {
 		this.quantity = quantity;
 	}
 
-	public Double getPrice() {
-		return price;
+	public Double getWeight() {
+		return weight;
 	}
 
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setWeight(Double weight) {
+		this.weight = weight;
 	}
 
 }

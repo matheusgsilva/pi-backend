@@ -1,5 +1,7 @@
 package br.senac.backend.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.senac.backend.model.OrderItem;
@@ -24,5 +26,10 @@ public class OrderItemServiceBean implements OrderItemService {
     @Override
     public OrderItem save(OrderItem orderItem) {
         return orderItemRepository.save(orderItem);
+    }
+    
+    @Override
+    public List<OrderItem> findByOrderGuid(String number) {
+        return orderItemRepository.findByOrderGuid(number);
     }
 }

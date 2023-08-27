@@ -1,5 +1,7 @@
 package br.senac.backend.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +28,7 @@ public class OrderItemController {
     private OrderItemConverter orderItemConverter;
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/orderitem/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/orderitem/add", method = RequestMethod.POST)
     public ResponseEntity<ResponseAPI> add(@RequestBody OrderItemRequest orderItemRequest) {
         ResponseAPI responseAPI = new ResponseAPI();
         try {
@@ -45,7 +47,7 @@ public class OrderItemController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/orderitem/update/guid/{guid}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/api/orderitem/update/guid/{guid}", method = RequestMethod.PUT)
     public ResponseEntity<ResponseAPI> update(@PathVariable String guid, @RequestBody OrderItemRequest orderItemRequest) {
         ResponseAPI responseAPI = new ResponseAPI();
         try {
@@ -68,7 +70,7 @@ public class OrderItemController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/orderitem/detail/guid/{guid}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/orderitem/detail/guid/{guid}", method = RequestMethod.GET)
     public ResponseEntity<ResponseAPI> getByGuid(@PathVariable String guid) {
         ResponseAPI responseAPI = new ResponseAPI();
         try {
@@ -86,7 +88,7 @@ public class OrderItemController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/orderitem/delete/guid/{guid}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/api/orderitem/delete/guid/{guid}", method = RequestMethod.DELETE)
     public ResponseEntity<ResponseAPI> delete(@PathVariable String guid) {
         ResponseAPI responseAPI = new ResponseAPI();
         try {
@@ -104,21 +106,21 @@ public class OrderItemController {
         }
     }
 
-//    @CrossOrigin(origins = "*")
-//    @RequestMapping(value = "/orderitem/list", method = RequestMethod.GET)
-//    public ResponseEntity<ResponseAPI> list() {
-//        ResponseAPI responseAPI = new ResponseAPI();
-//        try {
-//            List<OrderItemResponse> list = orderItemConverter.orderItemToResponseList(orderItemService.());
-//            if (!list.isEmpty())
-//                handlerOrderItem.handleListMessages(responseAPI, 200, list);
-//            else
-//                handlerOrderItem.handleListMessages(responseAPI, 404, null);
-//
-//            return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
-//        } catch (Exception ex) {
-//            handlerOrderItem.handleListMessages(responseAPI, 400, null);
-//            return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
-//        }
-//    }
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/api/orderitem/list/{guid}", method = RequestMethod.GET)
+    public ResponseEntity<ResponseAPI> list(@PathVariable String guid) {
+        ResponseAPI responseAPI = new ResponseAPI();
+        try {
+            List<OrderItemResponse> list = orderItemConverter.orderItemToResponseList(orderItemService.findByOrderGuid(guid));
+            if (!list.isEmpty())
+                handlerOrderItem.handleListMessages(responseAPI, 200, list);
+            else
+                handlerOrderItem.handleListMessages(responseAPI, 404, null);
+
+            return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
+        } catch (Exception ex) {
+            handlerOrderItem.handleListMessages(responseAPI, 400, null);
+            return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
+        }
+    }
 }

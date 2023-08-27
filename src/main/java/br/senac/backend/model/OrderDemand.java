@@ -7,8 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
+
+import br.senac.backend.util.ETYPE_ORDER;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,14 +31,15 @@ public class OrderDemand {
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date orderDate;
 
 	@Column(length = 50)
 	private String number;
 
-	@Column(length = 50)
-	private String status;
-
+	@Column(columnDefinition = "INT(1) default 0")
+	private ETYPE_ORDER status;
+	
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
 	@Column(name = "guid", columnDefinition = "VARCHAR(36)", nullable = false)
@@ -67,11 +72,11 @@ public class OrderDemand {
 		this.orderDate = orderDate;
 	}
 
-	public String getStatus() {
+	public ETYPE_ORDER getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(ETYPE_ORDER status) {
 		this.status = status;
 	}
 

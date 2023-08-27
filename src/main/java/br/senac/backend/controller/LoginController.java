@@ -47,7 +47,8 @@ public class LoginController {
 				Token t = tokenService.getNewTokenPersisted(user);
 				login.setEmail(user.getEmail());
 				login.setToken(t.getToken());
-				login.setGuid(user.getGuid());
+				login.setUserGuid(user.getGuid());
+				login.setUserName(user.getName());
 				handlerLogin.handleLoginMessages(responseAPI, 200, login);
 				LOGGER.info(" :: Encerrando o método logon - 200 - OK :: ");
 				return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);

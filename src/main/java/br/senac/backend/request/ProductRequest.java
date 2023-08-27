@@ -7,7 +7,6 @@ public class ProductRequest {
 	private String description;
 	private String type;
 	private Double price;
-	private String guid;
 
 	public String getName() {
 		return name;
@@ -31,14 +30,6 @@ public class ProductRequest {
 
 	public void setPrice(Double price) {
 		this.price = price;
-	}
-
-	public String getGuid() {
-		return guid;
-	}
-
-	public void setGuid(String guid) {
-		this.guid = guid;
 	}
 
 	public String getCode() {

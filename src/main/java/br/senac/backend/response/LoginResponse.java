@@ -4,7 +4,8 @@ public class LoginResponse {
 
 	private String email;
 	private String token;
-	private String guid;
+	private String userGuid;
+	private String userName;
 
 	public String getEmail() {
 		return email;
@@ -22,12 +23,20 @@ public class LoginResponse {
 		this.token = token;
 	}
 
-	public String getGuid() {
-		return guid;
+	public String getUserGuid() {
+		return userGuid;
 	}
 
-	public void setGuid(String guid) {
-		this.guid = guid;
+	public void setUserGuid(String userGuid) {
+		this.userGuid = userGuid;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 }

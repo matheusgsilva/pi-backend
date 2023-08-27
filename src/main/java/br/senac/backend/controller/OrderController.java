@@ -27,7 +27,7 @@ public class OrderController {
 	private OrderConverter orderConverter;
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/order/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/order/add", method = RequestMethod.POST)
 	public ResponseEntity<ResponseAPI> add(@RequestBody OrderRequest orderRequest) {
 		ResponseAPI responseAPI = new ResponseAPI();
 		try {
@@ -46,7 +46,7 @@ public class OrderController {
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/order/update/guid/{guid}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/order/update/guid/{guid}", method = RequestMethod.PUT)
 	public ResponseEntity<ResponseAPI> update(@PathVariable String guid, @RequestBody OrderRequest orderRequest) {
 		ResponseAPI responseAPI = new ResponseAPI();
 		try {
@@ -69,7 +69,7 @@ public class OrderController {
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/order/detail/guid/{guid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/order/detail/guid/{guid}", method = RequestMethod.GET)
 	public ResponseEntity<ResponseAPI> getByGuid(@PathVariable String guid) {
 		ResponseAPI responseAPI = new ResponseAPI();
 		try {
@@ -87,7 +87,7 @@ public class OrderController {
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/order/delete/guid/{guid}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/order/delete/guid/{guid}", method = RequestMethod.DELETE)
 	public ResponseEntity<ResponseAPI> delete(@PathVariable String guid) {
 		ResponseAPI responseAPI = new ResponseAPI();
 		try {
@@ -106,7 +106,7 @@ public class OrderController {
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/order/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/order/list", method = RequestMethod.GET)
 	public ResponseEntity<ResponseAPI> list() {
 		ResponseAPI responseAPI = new ResponseAPI();
 		try {
