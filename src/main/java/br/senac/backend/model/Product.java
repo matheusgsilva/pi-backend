@@ -9,6 +9,8 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import br.senac.backend.util.ETYPE_PRODUCT;
+
 import javax.persistence.CascadeType;
 
 @Entity
@@ -32,6 +34,9 @@ public class Product {
 
 	@OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
 	private Stock stock;
+
+	@Column(columnDefinition = "INT(1) default 0")
+	private ETYPE_PRODUCT type;
 
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
@@ -92,6 +97,14 @@ public class Product {
 
 	public void setGuid(String guid) {
 		this.guid = guid;
+	}
+
+	public ETYPE_PRODUCT getType() {
+		return type;
+	}
+
+	public void setType(ETYPE_PRODUCT type) {
+		this.type = type;
 	}
 
 }

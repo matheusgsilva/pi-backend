@@ -2,6 +2,8 @@ package br.senac.backend.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import br.senac.backend.util.ETYPE_PRODUCT;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class StockResponse {
 
@@ -9,7 +11,9 @@ public class StockResponse {
 	private String productGuid;
 	private String productName;
 	private String productCode;
+	private ETYPE_PRODUCT stockType;
 	private Integer quantityAvailable;
+	private Double weightAvailable;
 
 	public String getGuid() {
 		return guid;
@@ -49,6 +53,22 @@ public class StockResponse {
 
 	public void setQuantityAvailable(Integer quantityAvailable) {
 		this.quantityAvailable = quantityAvailable;
+	}
+
+	public Double getWeightAvailable() {
+		return weightAvailable;
+	}
+
+	public void setWeightAvailable(Double weightAvailable) {
+		this.weightAvailable = weightAvailable;
+	}
+
+	public ETYPE_PRODUCT getStockType() {
+		return stockType;
+	}
+
+	public void setStockType(ETYPE_PRODUCT stockType) {
+		this.stockType = stockType;
 	}
 
 }

@@ -23,6 +23,7 @@ public class StockConverter {
             stock.setGuid(UUID.randomUUID().toString());
             stock.setProduct(productService.detail(stockRequest.getProductGuid()));
             stock.setQuantity(stockRequest.getQuantityAvailable());
+            stock.setWeight(stockRequest.getWeightAvailable());
             return stock;
         } catch (Exception e) {
             e.printStackTrace();
@@ -33,6 +34,7 @@ public class StockConverter {
     public Stock stockSave(StockRequest stockRequest, Stock stock) {
         try {
             stock.setQuantity(stockRequest.getQuantityAvailable());
+            stock.setWeight(stockRequest.getWeightAvailable());
             return stock;
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,10 +45,13 @@ public class StockConverter {
     public StockResponse stockToResponse(Stock stock) {
         try {
             StockResponse stockResponse = new StockResponse();
+            stockResponse.setGuid(stock.getGuid());
             stockResponse.setProductGuid(stock.getProduct().getGuid());
             stockResponse.setProductName(stock.getProduct().getName());
             stockResponse.setProductCode(stock.getProduct().getCode());
+            stockResponse.setStockType(stock.getProduct().getType());
             stockResponse.setQuantityAvailable(stock.getQuantity());
+            stockResponse.setWeightAvailable(stock.getWeight());
             return stockResponse;
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,10 +64,13 @@ public class StockConverter {
             List<StockResponse> list = new ArrayList<StockResponse>();
             for (Stock stock : stocks) {
                 StockResponse stockResponse = new StockResponse();
+                stockResponse.setGuid(stock.getGuid());
                 stockResponse.setProductGuid(stock.getProduct().getGuid());
                 stockResponse.setProductName(stock.getProduct().getName());
                 stockResponse.setProductCode(stock.getProduct().getCode());
+                stockResponse.setStockType(stock.getProduct().getType());
                 stockResponse.setQuantityAvailable(stock.getQuantity());
+                stockResponse.setWeightAvailable(stock.getWeight());
                 list.add(stockResponse);
             }
             return list;

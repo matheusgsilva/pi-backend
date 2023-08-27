@@ -1,10 +1,13 @@
 package br.senac.backend.response;
 
+import br.senac.backend.util.ETYPE_PRODUCT;
+
 public class ProductResponse {
 
 	private String guid;
 	private String name;
 	private String code;
+	private ETYPE_PRODUCT type;
 	private String description;
 	private Double price;
 
@@ -46,6 +49,14 @@ public class ProductResponse {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public ETYPE_PRODUCT getType() {
+		return type;
+	}
+
+	public void setType(ETYPE_PRODUCT type) {
+		this.type = type;
 	}
 
 }

@@ -22,8 +22,11 @@ public class Stock {
 	@JoinColumn(name = "product_id", nullable = false)
 	private Product product;
 
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Integer quantity;
+
+	@Column(nullable = true, precision = 10, scale = 3)
+	private Double weight;
 
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
@@ -60,6 +63,14 @@ public class Stock {
 
 	public void setGuid(String guid) {
 		this.guid = guid;
+	}
+
+	public Double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(Double weight) {
+		this.weight = weight;
 	}
 
 }

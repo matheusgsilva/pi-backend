@@ -5,6 +5,7 @@ public class ProductRequest {
 	private String name;
 	private String code;
 	private String description;
+	private String type;
 	private Double price;
 	private String guid;
 
@@ -46,6 +47,14 @@ public class ProductRequest {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

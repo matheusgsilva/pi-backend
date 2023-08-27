@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import br.senac.backend.model.Product;
 import br.senac.backend.request.ProductRequest;
 import br.senac.backend.response.ProductResponse;
+import br.senac.backend.util.ETYPE_PRODUCT;
 
 @Component
 public class ProductConverter {
@@ -17,6 +18,7 @@ public class ProductConverter {
 			Product product = new Product();
 			product.setGuid(UUID.randomUUID().toString());
 			product.setCode(productRequest.getCode());
+			product.setType(ETYPE_PRODUCT.valueOf(productRequest.getType()));
 			product.setName(productRequest.getName());
 			product.setDescription(productRequest.getDescription());
 			product.setPrice(productRequest.getPrice());
@@ -31,6 +33,7 @@ public class ProductConverter {
 		try {
 			product.setCode(productRequest.getCode());
 			product.setName(productRequest.getName());
+			product.setType(ETYPE_PRODUCT.valueOf(productRequest.getType()));
 			product.setDescription(productRequest.getDescription());
 			product.setPrice(productRequest.getPrice());
 			return product;
@@ -45,6 +48,7 @@ public class ProductConverter {
 			ProductResponse productResponse = new ProductResponse();
 			productResponse.setCode(product.getCode());
 			productResponse.setGuid(product.getGuid());
+			productResponse.setType(product.getType());
 			productResponse.setName(product.getName());
 			productResponse.setDescription(product.getDescription());
 			productResponse.setPrice(product.getPrice());
@@ -62,6 +66,7 @@ public class ProductConverter {
 				ProductResponse productResponse = new ProductResponse();
 				productResponse.setCode(product.getCode());
 				productResponse.setGuid(product.getGuid());
+				productResponse.setType(product.getType());
 				productResponse.setName(product.getName());
 				productResponse.setDescription(product.getDescription());
 				productResponse.setPrice(product.getPrice());

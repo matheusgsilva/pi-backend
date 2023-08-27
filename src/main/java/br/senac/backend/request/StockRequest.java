@@ -5,6 +5,7 @@ public class StockRequest {
 	private String guid;
 	private String productGuid;
 	private Integer quantityAvailable;
+	private Double weightAvailable;
 
 	public String getGuid() {
 		return guid;
@@ -28,6 +29,14 @@ public class StockRequest {
 
 	public void setQuantityAvailable(Integer quantityAvailable) {
 		this.quantityAvailable = quantityAvailable;
+	}
+
+	public Double getWeightAvailable() {
+		return weightAvailable;
+	}
+
+	public void setWeightAvailable(Double weightAvailable) {
+		this.weightAvailable = weightAvailable;
 	}
 
 }

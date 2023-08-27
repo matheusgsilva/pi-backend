@@ -27,7 +27,7 @@ public class StockController {
     private StockConverter stockConverter;
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/stock/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/stock/add", method = RequestMethod.POST)
     public ResponseEntity<ResponseAPI> add(@RequestBody StockRequest stockRequest) {
         ResponseAPI responseAPI = new ResponseAPI();
         try {
@@ -46,7 +46,7 @@ public class StockController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/stock/update/guid/{guid}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/api/stock/update/guid/{guid}", method = RequestMethod.PUT)
     public ResponseEntity<ResponseAPI> update(@PathVariable String guid, @RequestBody StockRequest stockRequest) {
         ResponseAPI responseAPI = new ResponseAPI();
         try {
@@ -69,7 +69,7 @@ public class StockController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/stock/detail/guid/{guid}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/stock/detail/guid/{guid}", method = RequestMethod.GET)
     public ResponseEntity<ResponseAPI> getByGuid(@PathVariable String guid) {
         ResponseAPI responseAPI = new ResponseAPI();
         try {
@@ -87,7 +87,7 @@ public class StockController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/stock/delete/guid/{guid}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/api/stock/delete/guid/{guid}", method = RequestMethod.DELETE)
     public ResponseEntity<ResponseAPI> delete(@PathVariable String guid) {
         ResponseAPI responseAPI = new ResponseAPI();
         try {
@@ -106,7 +106,7 @@ public class StockController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/stock/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/stock/list", method = RequestMethod.GET)
     public ResponseEntity<ResponseAPI> list() {
         ResponseAPI responseAPI = new ResponseAPI();
         try {
