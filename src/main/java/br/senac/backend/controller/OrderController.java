@@ -29,7 +29,9 @@ public class OrderController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/api/order/add", method = RequestMethod.POST)
 	public ResponseEntity<ResponseAPI> add(@RequestBody OrderRequest orderRequest) {
+		
 		ResponseAPI responseAPI = new ResponseAPI();
+		
 		try {
 			OrderResponse orderResponse = orderConverter
 					.orderToResponse(orderService.save(orderConverter.orderSave(orderRequest)));
@@ -40,6 +42,7 @@ public class OrderController {
 
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			handlerOrder.handleAddMessages(responseAPI, 400, null);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}
@@ -48,7 +51,9 @@ public class OrderController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/api/order/update/guid/{guid}", method = RequestMethod.PUT)
 	public ResponseEntity<ResponseAPI> update(@PathVariable String guid, @RequestBody OrderRequest orderRequest) {
+		
 		ResponseAPI responseAPI = new ResponseAPI();
+		
 		try {
 			OrderDemand order = orderService.detail(guid);
 			if (order != null) {
@@ -63,6 +68,7 @@ public class OrderController {
 
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			handlerOrder.handleUpdateMessages(responseAPI, 400, null);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}
@@ -71,7 +77,9 @@ public class OrderController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/api/order/detail/guid/{guid}", method = RequestMethod.GET)
 	public ResponseEntity<ResponseAPI> getByGuid(@PathVariable String guid) {
+		
 		ResponseAPI responseAPI = new ResponseAPI();
+		
 		try {
 			OrderResponse orderResponse = orderConverter.orderToResponse(orderService.detail(guid));
 			if (orderResponse != null)
@@ -81,6 +89,7 @@ public class OrderController {
 
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			handlerOrder.handleDetailMessages(responseAPI, 400, null);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}
@@ -89,7 +98,9 @@ public class OrderController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/api/order/delete/guid/{guid}", method = RequestMethod.DELETE)
 	public ResponseEntity<ResponseAPI> delete(@PathVariable String guid) {
+		
 		ResponseAPI responseAPI = new ResponseAPI();
+		
 		try {
 			OrderDemand order = orderService.detail(guid);
 			if (order != null) {
@@ -100,6 +111,7 @@ public class OrderController {
 
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			handlerOrder.handleDeleteMessages(responseAPI, 400);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}
@@ -108,7 +120,9 @@ public class OrderController {
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/api/order/list", method = RequestMethod.GET)
 	public ResponseEntity<ResponseAPI> list() {
+		
 		ResponseAPI responseAPI = new ResponseAPI();
+		
 		try {
 			List<OrderResponse> list = orderConverter.orderToResponseList(orderService.listAll());
 			if (!list.isEmpty())
@@ -118,6 +132,7 @@ public class OrderController {
 
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			handlerOrder.handleListMessages(responseAPI, 400, null);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}

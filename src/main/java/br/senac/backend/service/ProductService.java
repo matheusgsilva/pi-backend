@@ -11,6 +11,8 @@ public interface ProductService {
 	Product detail(String guid);
 
 	boolean isExists(String code);
+	
+	boolean isExists(String code, String guid);
 
 	void delete(Long id);
 

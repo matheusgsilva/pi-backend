@@ -28,8 +28,13 @@ public class StockServiceBean implements StockService {
     }
 
     @Override
-    public boolean existsByProductGuid(String productGuid) {
-        return stockRepository.existsByStockForProductGuid(productGuid);
+    public boolean isExists(String productGuid) {
+        return stockRepository.isExists(productGuid);
+    }
+    
+    @Override
+    public boolean isExists(String productGuid, String guid) {
+        return stockRepository.isExists(productGuid, guid);
     }
 
     @Override

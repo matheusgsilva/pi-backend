@@ -17,7 +17,10 @@ public interface StockRepository extends JpaRepository<Stock, Long> {
     Stock findByProductGuid(String guid);
 
     @Query("SELECT CASE WHEN COUNT(s) > 0 THEN true ELSE false END FROM Stock s WHERE s.product.guid = ?1")
-    boolean existsByStockForProductGuid(String productGuid);
+    boolean isExists(String productGuid);
+    
+    @Query("SELECT CASE WHEN COUNT(s) > 0 THEN true ELSE false END FROM Stock s WHERE s.product.guid = ?1 AND s.guid <> ?2")
+    boolean isExists(String productGuid, String guid);
     
     @Query("SELECT s FROM Stock s")
     List<Stock> getAllStocks();

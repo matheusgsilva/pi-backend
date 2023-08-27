@@ -26,6 +26,11 @@ public class ProductServiceBean implements ProductService {
     public boolean isExists(String code) {
         return productRepository.isExists(code);
     }
+    
+    @Override
+    public boolean isExists(String code, String guid) {
+        return productRepository.isExists(code, guid);
+    }
 
     @Override
     public void delete(Long id) {

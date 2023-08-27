@@ -1,7 +1,5 @@
 package br.senac.backend.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +30,6 @@ public class LoginController {
 	@Autowired
 	private HandlerLogin handlerLogin;
 
-	private Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
-
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/logon", method = RequestMethod.POST)
 	public ResponseEntity<ResponseAPI> login(@RequestBody LoginRequest loginRequest) {
@@ -50,17 +46,14 @@ public class LoginController {
 				login.setUserGuid(user.getGuid());
 				login.setUserName(user.getName());
 				handlerLogin.handleLoginMessages(responseAPI, 200, login);
-				LOGGER.info(" :: Encerrando o método logon - 200 - OK :: ");
 				return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 			}
-			
-			LOGGER.info(" :: Encerrando o método logon - 401 - UNAUTHORIZED :: ");
+
 			handlerLogin.handleLoginMessages(responseAPI, 401, login);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.UNAUTHORIZED);
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			LOGGER.info(" :: Encerrando o método logon - 400 - BAD REQUEST :: ");
 			handlerLogin.handleLoginMessages(responseAPI, 400, null);
 			return new ResponseEntity<ResponseAPI>(HttpStatus.UNAUTHORIZED);
 		}

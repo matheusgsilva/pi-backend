@@ -2,8 +2,6 @@ package br.senac.backend.controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import br.senac.backend.converter.UserConverter;
 import br.senac.backend.handler.HandlerUser;
 import br.senac.backend.model.User;
-import br.senac.backend.request.UserRequest;
 import br.senac.backend.request.UpdatePassRequest;
+import br.senac.backend.request.UserRequest;
 import br.senac.backend.response.ResponseAPI;
 import br.senac.backend.response.UserResponse;
 import br.senac.backend.service.UserService;
@@ -36,8 +34,6 @@ public class UserController {
 
 	@Autowired
 	private UserConverter userConverter;
-
-	private Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
@@ -55,11 +51,9 @@ public class UserController {
 			} else
 				handlerUser.handleAddMessages(responseAPI, 304, null);
 
-			LOGGER.info(" :: Encerrando o método /api/user/add - 200 - OK :: ");
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			LOGGER.error(" :: Encerrando o método /api/user/add - 400 - BAD REQUEST :: ");
 			handlerUser.handleAddMessages(responseAPI, 400, null);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}
@@ -87,11 +81,9 @@ public class UserController {
 			} else
 				handlerUser.handleUpdateMessages(responseAPI, 404, null);
 
-			LOGGER.info(" :: Encerrando o método /api/user/update/guid - 200 - OK :: ");
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			LOGGER.error(" :: Encerrando o método /api/user/update/guid - 400 - BAD REQUEST :: ");
 			handlerUser.handleUpdateMessages(responseAPI, 400, null);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}
@@ -116,11 +108,9 @@ public class UserController {
 			} else
 				handlerUser.handleUpdateMessages(responseAPI, 200, null);
 
-			LOGGER.info(" :: Encerrando o método /api/user/updatepass - 200 - OK :: ");
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			LOGGER.error(" :: Encerrando o método /api/user/updatepass - 400 - BAD REQUEST :: ");
 			handlerUser.handleUpdateMessages(responseAPI, 400, null);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}
@@ -140,11 +130,9 @@ public class UserController {
 			else
 				handlerUser.handleDetailMessages(responseAPI, 404, null);
 
-			LOGGER.info(" :: Encerrando o método /api/user/detail/guid - 200 - OK :: ");
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			LOGGER.error(" :: Encerrando o método /api/user/detail/guid - 400 - BAD REQUEST :: ");
 			handlerUser.handleDetailMessages(responseAPI, 400, null);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}
@@ -164,11 +152,9 @@ public class UserController {
 			} else
 				handlerUser.handleDeleteMessages(responseAPI, 404);
 
-			LOGGER.info(" :: Encerrando o método /api/user/delete/guid - 200 - OK :: ");
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			LOGGER.error(" :: Encerrando o método /api/user/delete/guid - 400 - BAD REQUEST :: ");
 			handlerUser.handleDeleteMessages(responseAPI, 400);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}
@@ -187,11 +173,9 @@ public class UserController {
 			else
 				handlerUser.handleListMessages(responseAPI, 404, null);
 
-			LOGGER.info(" :: Encerrando o método /api/user/list - 200 - OK :: ");
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			LOGGER.error(" :: Encerrando o método /api/user/list - 400 - BAD REQUEST :: ");
 			handlerUser.handleListMessages(responseAPI, 400, null);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}

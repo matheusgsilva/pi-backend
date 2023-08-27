@@ -12,7 +12,9 @@ public interface StockService {
 	
 	Stock findByGuid(String guid);
 
-	boolean existsByProductGuid(String productGuid);
+	boolean isExists(String productGuid);
+	
+	boolean isExists(String productGuid, String guid);
 
 	void delete(Long id);
 

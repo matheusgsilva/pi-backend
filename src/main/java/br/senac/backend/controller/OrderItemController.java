@@ -30,7 +30,9 @@ public class OrderItemController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/api/orderitem/add", method = RequestMethod.POST)
     public ResponseEntity<ResponseAPI> add(@RequestBody OrderItemRequest orderItemRequest) {
+    	
         ResponseAPI responseAPI = new ResponseAPI();
+        
         try {
             OrderItemResponse orderItemResponse = orderItemConverter
                     .orderItemToResponse(orderItemService.save(orderItemConverter.orderItemSave(orderItemRequest)));
@@ -41,6 +43,7 @@ public class OrderItemController {
 
             return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
         } catch (Exception ex) {
+        	ex.printStackTrace();
             handlerOrderItem.handleAddMessages(responseAPI, 400, null);
             return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
         }
@@ -49,7 +52,9 @@ public class OrderItemController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/api/orderitem/update/guid/{guid}", method = RequestMethod.PUT)
     public ResponseEntity<ResponseAPI> update(@PathVariable String guid, @RequestBody OrderItemRequest orderItemRequest) {
+    	
         ResponseAPI responseAPI = new ResponseAPI();
+        
         try {
             OrderItem orderItem = orderItemService.detail(guid);
             if (orderItem != null) {
@@ -64,6 +69,7 @@ public class OrderItemController {
 
             return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
         } catch (Exception ex) {
+        	ex.printStackTrace();
             handlerOrderItem.handleUpdateMessages(responseAPI, 400, null);
             return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
         }
@@ -72,7 +78,9 @@ public class OrderItemController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/api/orderitem/detail/guid/{guid}", method = RequestMethod.GET)
     public ResponseEntity<ResponseAPI> getByGuid(@PathVariable String guid) {
+    	
         ResponseAPI responseAPI = new ResponseAPI();
+        
         try {
             OrderItemResponse orderItemResponse = orderItemConverter.orderItemToResponse(orderItemService.detail(guid));
             if (orderItemResponse != null)
@@ -82,6 +90,7 @@ public class OrderItemController {
 
             return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
         } catch (Exception ex) {
+        	ex.printStackTrace();
             handlerOrderItem.handleDetailMessages(responseAPI, 400, null);
             return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
         }
@@ -90,7 +99,9 @@ public class OrderItemController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/api/orderitem/delete/guid/{guid}", method = RequestMethod.DELETE)
     public ResponseEntity<ResponseAPI> delete(@PathVariable String guid) {
+    	
         ResponseAPI responseAPI = new ResponseAPI();
+        
         try {
             OrderItem orderItem = orderItemService.detail(guid);
             if (orderItem != null) {
@@ -101,6 +112,7 @@ public class OrderItemController {
 
             return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
         } catch (Exception ex) {
+        	ex.printStackTrace();
             handlerOrderItem.handleDeleteMessages(responseAPI, 400);
             return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
         }
@@ -109,7 +121,9 @@ public class OrderItemController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/api/orderitem/list/{guid}", method = RequestMethod.GET)
     public ResponseEntity<ResponseAPI> list(@PathVariable String guid) {
+    	
         ResponseAPI responseAPI = new ResponseAPI();
+        
         try {
             List<OrderItemResponse> list = orderItemConverter.orderItemToResponseList(orderItemService.findByOrderGuid(guid));
             if (!list.isEmpty())
@@ -119,6 +133,7 @@ public class OrderItemController {
 
             return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
         } catch (Exception ex) {
+        	ex.printStackTrace();
             handlerOrderItem.handleListMessages(responseAPI, 400, null);
             return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
         }

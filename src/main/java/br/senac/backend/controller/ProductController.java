@@ -1,17 +1,23 @@
 package br.senac.backend.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import br.senac.backend.converter.ProductConverter;
 import br.senac.backend.handler.HandlerProduct;
 import br.senac.backend.model.Product;
 import br.senac.backend.request.ProductRequest;
-import br.senac.backend.response.ResponseAPI;
 import br.senac.backend.response.ProductResponse;
+import br.senac.backend.response.ResponseAPI;
 import br.senac.backend.service.ProductService;
 
 @Controller
@@ -28,7 +34,8 @@ public class ProductController {
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/api/product/add", method = RequestMethod.POST)
-	public ResponseEntity<ResponseAPI> add(@RequestBody ProductRequest productRequest) { // verificar os saves e nomes dos metodos e ver logs
+	public ResponseEntity<ResponseAPI> add(@RequestBody ProductRequest productRequest) { 
+		
 		ResponseAPI responseAPI = new ResponseAPI();
 		try {
 			if (!productService.isExists(productRequest.getCode())) {
@@ -43,6 +50,7 @@ public class ProductController {
 
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			handlerProduct.handleAddMessages(responseAPI, 400, null);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}
@@ -53,19 +61,23 @@ public class ProductController {
 	public ResponseEntity<ResponseAPI> update(@PathVariable String guid, @RequestBody ProductRequest productRequest) {
 		ResponseAPI responseAPI = new ResponseAPI();
 		try {
-			Product product = productService.detail(guid);
-			if (product != null) {
-				ProductResponse productResponse = productConverter
-						.productToResponse(productService.save(productConverter.productSave(productRequest, product)));
-				if (productResponse != null)
-					handlerProduct.handleUpdateMessages(responseAPI, 200, productResponse);
-				else
+			if (!productService.isExists(productRequest.getCode(), guid)) {
+				Product product = productService.detail(guid);
+				if (product != null) {
+					ProductResponse productResponse = productConverter.productToResponse(
+							productService.save(productConverter.productSave(productRequest, product)));
+					if (productResponse != null)
+						handlerProduct.handleUpdateMessages(responseAPI, 200, productResponse);
+					else
+						handlerProduct.handleUpdateMessages(responseAPI, 404, null);
+				} else
 					handlerProduct.handleUpdateMessages(responseAPI, 404, null);
 			} else
-				handlerProduct.handleUpdateMessages(responseAPI, 404, null);
+				handlerProduct.handleAddMessages(responseAPI, 304, null);
 
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			handlerProduct.handleUpdateMessages(responseAPI, 400, null);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}
@@ -84,6 +96,7 @@ public class ProductController {
 
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			handlerProduct.handleDetailMessages(responseAPI, 400, null);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}
@@ -103,6 +116,7 @@ public class ProductController {
 
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			handlerProduct.handleDeleteMessages(responseAPI, 400);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}
@@ -121,6 +135,7 @@ public class ProductController {
 
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.OK);
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			handlerProduct.handleListMessages(responseAPI, 400, null);
 			return new ResponseEntity<ResponseAPI>(responseAPI, HttpStatus.BAD_REQUEST);
 		}

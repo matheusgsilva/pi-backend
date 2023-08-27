@@ -13,7 +13,9 @@ public class OrderItemResponse {
 	private String productName;
 	private String productCode;
 	private ETYPE_PRODUCT productType;
+	private Integer quantityAvailable;
 	private Integer quantity;
+	private Double weightAvailable;
 	private Double weight;
 
 	public String getGuid() {
@@ -78,6 +80,22 @@ public class OrderItemResponse {
 
 	public void setProductType(ETYPE_PRODUCT productType) {
 		this.productType = productType;
+	}
+
+	public Integer getQuantityAvailable() {
+		return quantityAvailable;
+	}
+
+	public void setQuantityAvailable(Integer quantityAvailable) {
+		this.quantityAvailable = quantityAvailable;
+	}
+
+	public Double getWeightAvailable() {
+		return weightAvailable;
+	}
+
+	public void setWeightAvailable(Double weightAvailable) {
+		this.weightAvailable = weightAvailable;
 	}
 
 }
