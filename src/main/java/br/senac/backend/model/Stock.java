@@ -33,6 +33,12 @@ public class Stock {
 	@Column(name = "guid", columnDefinition = "VARCHAR(36)", nullable = false)
 	private String guid;
 
+	@Column(name = "aisle", columnDefinition = "VARCHAR(50)", nullable = true)
+	private String aisle;
+
+	@Column(name = "shelf", columnDefinition = "VARCHAR(50)", nullable = true)
+	private String shelf;
+
 	public Long getId() {
 		return id;
 	}
@@ -73,4 +79,19 @@ public class Stock {
 		this.weight = weight;
 	}
 
+	public String getAisle() {
+		return aisle;
+	}
+
+	public void setAisle(String aisle) {
+		this.aisle = aisle;
+	}
+
+	public String getShelf() {
+		return shelf;
+	}
+
+	public void setShelf(String shelf) {
+		this.shelf = shelf;
+	}
 }

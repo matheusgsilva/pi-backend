@@ -5,7 +5,9 @@ public class StockRequest {
 	private String productGuid;
 	private Integer quantityAvailable;
 	private Double weightAvailable;
-
+	private String aisle;
+	private String shelf;
+	
 	public String getProductGuid() {
 		return productGuid;
 	}
@@ -28,6 +30,22 @@ public class StockRequest {
 
 	public void setWeightAvailable(Double weightAvailable) {
 		this.weightAvailable = weightAvailable;
+	}
+
+	public String getAisle() {
+		return aisle;
+	}
+
+	public void setAisle(String aisle) {
+		this.aisle = aisle;
+	}
+
+	public String getShelf() {
+		return shelf;
+	}
+
+	public void setShelf(String shelf) {
+		this.shelf = shelf;
 	}
 
 }

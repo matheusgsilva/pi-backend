@@ -24,6 +24,8 @@ public class StockConverter {
             stock.setProduct(productService.detail(stockRequest.getProductGuid()));
             stock.setQuantity(stockRequest.getQuantityAvailable());
             stock.setWeight(stockRequest.getWeightAvailable());
+            stock.setAisle(stockRequest.getAisle());
+            stock.setShelf(stockRequest.getShelf());
             return stock;
         } catch (Exception e) {
             e.printStackTrace();
@@ -35,6 +37,8 @@ public class StockConverter {
         try {
             stock.setQuantity(stockRequest.getQuantityAvailable());
             stock.setWeight(stockRequest.getWeightAvailable());
+            stock.setAisle(stockRequest.getAisle());
+            stock.setShelf(stockRequest.getShelf());
             return stock;
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,6 +56,8 @@ public class StockConverter {
             stockResponse.setStockType(stock.getProduct().getType());
             stockResponse.setQuantityAvailable(stock.getQuantity());
             stockResponse.setWeightAvailable(stock.getWeight());
+            stockResponse.setAisle(stock.getAisle());
+            stockResponse.setShelf(stock.getShelf());
             return stockResponse;
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,6 +77,8 @@ public class StockConverter {
                 stockResponse.setStockType(stock.getProduct().getType());
                 stockResponse.setQuantityAvailable(stock.getQuantity());
                 stockResponse.setWeightAvailable(stock.getWeight());
+                stockResponse.setAisle(stock.getAisle());
+                stockResponse.setShelf(stock.getShelf());
                 list.add(stockResponse);
             }
             return list;

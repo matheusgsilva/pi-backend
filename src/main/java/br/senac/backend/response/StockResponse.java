@@ -14,6 +14,8 @@ public class StockResponse {
 	private ETYPE_PRODUCT stockType;
 	private Integer quantityAvailable;
 	private Double weightAvailable;
+	private String aisle;
+	private String shelf;
 
 	public String getGuid() {
 		return guid;
@@ -69,6 +71,22 @@ public class StockResponse {
 
 	public void setStockType(ETYPE_PRODUCT stockType) {
 		this.stockType = stockType;
+	}
+
+	public String getAisle() {
+		return aisle;
+	}
+
+	public void setAisle(String aisle) {
+		this.aisle = aisle;
+	}
+
+	public String getShelf() {
+		return shelf;
+	}
+
+	public void setShelf(String shelf) {
+		this.shelf = shelf;
 	}
 
 }
